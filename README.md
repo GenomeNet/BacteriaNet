@@ -3,7 +3,8 @@
 
 <hr />
 
-*BacteriaNet* is a deep neuronal network developed with the *deepG* package that predics viral taxonomy on the genus level. A typical viral sequence can be analyzed in ~3 seconds. 
+*BacteriaNet* is a deep neuronal network developed with the *deepG* package that performs annotation of bacterial genomes. Currently it supports:
+- Sporulation prediction (97% balanced accuracy)
 
 ## Dependencies
 1. Docker
