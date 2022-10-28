@@ -1,9 +1,9 @@
 
-<img src="https://github.com/GenomeNet/VirusNet/blob/master/logo.png?raw=true" width="328" height="49">
+<img src="https://github.com/GenomeNet/BacteriaNet/blob/main/logo.png?raw=true" width="328" height="49">
 
 <hr />
 
-*VirusNet* is a deep neuronal network developed with the *deepG* package that predics viral taxonomy on the genus level. A typical viral sequence can be analyzed in ~3 seconds. 
+*BacteriaNet* is a deep neuronal network developed with the *deepG* package that predics viral taxonomy on the genus level. A typical viral sequence can be analyzed in ~3 seconds. 
 
 ## Dependencies
 1. Docker
