@@ -11,9 +11,7 @@ cp $SRC_DIR/bacterianet.py $PREFIX/bin/bacterianet
 cp $SRC_DIR/utils.r $PREFIX/bin/utils.r
 cp $SRC_DIR/setup_logger.r $PREFIX/bin/setup_logger.r
 cp $SRC_DIR/models.json $PREFIX/bin/models.json
-cp $SRC_DIR/predict_genus.r $PREFIX/bin/predict_genus.r
-cp $SRC_DIR/predict_binary.r $PREFIX/bin/predict_binary.r
-cp $SRC_DIR/predict_binary_metagenome.r $PREFIX/bin/predict_binary_metagenome.r
+cp $SRC_DIR/predict_phenotypes.r $PREFIX/bin/predict_phenotypes.r
 
 # Set the R library directory
 mkdir -p "$PREFIX/lib/R/library"

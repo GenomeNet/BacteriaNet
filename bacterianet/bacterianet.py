@@ -99,7 +99,6 @@ if __name__ == "__main__":
     predict_parser.add_argument('--path', type=str, default=os.path.expanduser('~/.bacterianet'))
     predict_parser.add_argument('--step_size', type=int, default=1000, help='Step size for prediction')
     predict_parser.add_argument('--batch_size', type=int, default=100, help='Batch size for prediction')
-    predict_parser.add_argument('--mode', type=str, choices=['binary'], default='binary', help='Prediction mode')
     
     args = parser.parse_args()
 
