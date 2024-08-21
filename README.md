@@ -1,8 +1,45 @@
 # BacteriaNet
 
-BacteriaNet is a tool that allows to generate phenotypic prediction of a bacteria genome based on nucleotide data.
+BacteriaNet is a tool that allows for the generation of phenotypic predictions of a bacterial genome based on nucleotide data. This tool leverages deep learning models to predict various bacterial phenotypes directly from genomic sequences, providing a comprehensive and efficient method for phenotype prediction without the need for manual curation or preprocessing of input data.
+
 
 [![Build and Test Conda Package](https://github.com/GenomeNet/BacteriaNet/actions/workflows/python-package-conda.yml/badge.svg)](https://github.com/GenomeNet/BacteriaNet/actions/workflows/python-package-conda.yml) [![Anaconda-Server Badge](https://anaconda.org/genomenet/BacteriaNet/badges/version.svg)](https://anaconda.org/genomenet/BacteriaNet) [![Anaconda-Server Badge](https://anaconda.org/genomenet/BacteriaNet/badges/latest_release_relative_date.svg)](https://anaconda.org/genomenet/BacteriaNet) [![Anaconda-Server Badge](https://anaconda.org/genomenet/BacteriaNet/badges/downloads.svg)](https://anaconda.org/genomenet/BacteriaNet)
+
+## Description
+
+BacteriaNet was developed to address the need for high-quality phenotypic data, which is often time-consuming to generate manually. By training deep learning models on data from the DSMZ BacDive database, BacteriaNet provides DZIF researchers with access to predicted phenotypes for missing entries in BacDive, enhancing the database's comprehensiveness and utility.
+
+The models were trained using deepG, a deep learning library developed in the McHardy lab (HZI). Unlike other methods, BacteriaNet does not require manual curation of input data or preprocessing and is not limited to coding regions, making it a powerful tool for phenotype prediction.
+
+### Key Features:
+- Predicts 14 different bacterial phenotypes from genomic sequences.
+- Utilizes deep learning models trained on a comprehensive dataset linking genomic and phenotypic data.
+- Outperforms traditional phenotype prediction methods like Traitar for many phenotypes.
+- Provides predictions for phenotypes such as spore forming, oxygen growth, gram staining, motility, and biosafety level.
+
+### Model Performance:
+The following table summarizes the performance of the BacteriaNet models for various phenotypes:
+
+| Task                  | Type       | Target                                                                 | Score* | Metric              |
+|-----------------------|------------|------------------------------------------------------------------------|--------|---------------------|
+| Spore forming         | Binary     | [TRUE, FALSE]                                                          | 91%*   | Balanced accuracy   |
+| Oxygen growth         | Binary     | [aerobe, anaerobe]                                                     | 87%*   | Balanced accuracy   |
+| Oxygen (obligate)     | Binary     | [aerobe, anaerobe]                                                     | 85%*   | Balanced accuracy   |
+| Oxygen (microaerophile)| Binary    | [aerobe, anaerobe]                                                     | 82%*   | Balanced accuracy   |
+| Oxygen (facultative)  | Binary     | [aerobe, anaerobe]                                                     | 72%*   | Balanced accuracy   |
+| Gram staining         | Multi-class| [gram stain negative, gram stain positive, gram stain variable]        | 85%*   | Balanced accuracy   |
+| Motility              | Binary     | [TRUE, FALSE]                                                          | 74%*   | Balanced accuracy   |
+| Biosafety level (BSL) | Multi-Class| [biosafety level 1, biosafety level 2, biosafety level 3]              | 40%*   | Balanced accuracy   |
+| Flagellum             | Multi-Class| [monotrichous, monotrichous_polar, polar, peritrichous, lophotrichous, gliding] | 29%    | Balanced accuracy   |
+| Cell shape            | Multi-Class| [rod shaped, coccus shaped, vibrio shaped, filament shaped, sphere shaped, ovoid shaped, pleomorphic shaped, spiral shaped, curved shaped, oval shaped, other] | 20% | Balanced accuracy   |
+| Cell size (length)    | Regression | Numeric                                                                | 0.15   | Correlation         |
+| Cell size (width)     | Regression | Numeric                                                                | 0.23   | Correlation         |
+| Pathogenicity (human) | Binary     | [TRUE, FALSE]                                                          | 0.68   | AUC                 |
+| Pathogenicity (animal)| Binary     | [TRUE, FALSE]                                                          | 0.72   | AUC                 |
+| Pathogenicity (plant) | Binary     | [TRUE, FALSE]                                                          | 0.68   | AUC                 |
+
+*Balanced accuracy or AUC depending on the target type.
+
 
 ## Install
 
