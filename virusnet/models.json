@@ -1,0 +1,5 @@
+{
+  "binary_model": {"url": "https://research.bifo.helmholtz-hzi.de/downloads/genomenet/temp_file/transfer_learning_virus_bert_5_85.h5", "hash": "71d0a188ddd90ca8f7221f88515edb09b6414ca0f69be005f6c2b4b58af9d1a6"},
+  "genus_model": {"url": "https://research.bifo.helmholtz-hzi.de/downloads/genomenet/genus_model_virusnet/virus_genus_2023-01-23.hdf5", "hash": "649857bff1481e16326a7fb1d7c20118e393c854ef51890f8f13971c52706260"},
+  "genus_labels": {"url": "https://research.bifo.helmholtz-hzi.de/downloads/genomenet/training_data/genus_labels.rds", "hash": "7b9fc65d9d8fc44a6cc48be98bb016865ad9fa1fb20e77992d858608d626a269"}
+}

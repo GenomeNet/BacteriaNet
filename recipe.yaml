@@ -1,0 +1,71 @@
+package:
+  name: virusnet
+  version: 0.9.5
+
+source:
+  path: virusnet/
+
+build:
+  noarch: python
+  number: 0
+
+  # This is required to make R link correctly on Linux.
+  rpaths:
+    - lib/R/lib/
+    - lib/
+ 
+requirements:
+  build:
+    - python 3.11
+    - gcc
+    - setuptools
+    - r-base 4.3.1
+    - r-hdf5r
+    - numpy
+    - r-keras
+    - r-remotes
+    - r-optparse
+    - r-zoo
+    - r-reticulate
+    - r-tfruns
+    - r-tfautograph
+    - r-mass
+    - r-mgcv
+    - h5py 3.9.0
+    - keras 2.12.0
+    - tensorflow-cpu 2.12.1
+
+  run:
+    - python >=3.11
+    - libgcc
+    - numpy
+    - r-base 4.3.1
+    - r-hdf5r
+    - r-keras
+    - r-optparse
+    - r-zoo
+    - r-purrr
+    - r-reticulate
+    - r-tfruns
+    - r-tfautograph
+    - r-mass
+    - r-mgcv
+    - r-futile.logger
+    - h5py 3.9.0
+    - keras 2.12.0
+    - tensorflow-cpu 2.12.1
+
+test:
+  commands:
+    - virusnet --help
+    - R --vanilla -e "library(keras)"
+    - R --vanilla -e "library(deepG)"
+
+
+about:
+  home: https://github.com/genomenet/virusnet
+  license: MIT
+  summary: A package for classifying virus using deep learning models.
+  description: |
+    VirusNet is a package that uses machine learning models to classify virus genus based on genomic sequences. 
+    The model has been trained on high quality genomes from the International Committee on Taxonomy of Viruses (ICTV).
