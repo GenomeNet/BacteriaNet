@@ -37,7 +37,7 @@ def download_models(download_path):
             print(f"Successfully verified the hash for {key}.")
         else:
             raise ValueError(f"Hash mismatch for {key}, download might be corrupted.")
-        os.environ[f"VIRUSNET_{key.upper()}"] = file_path
+        os.environ[f"BACTERIANET_{key.upper()}"] = file_path
 
 def download_progress(block_num, block_size, total_size):
     downloaded = block_num * block_size
@@ -97,16 +97,16 @@ def run_prediction(input, output, model_paths, step_size=1000, batch_size=100, m
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description='VirusNet Tool')
+    parser = argparse.ArgumentParser(description='BacteriaNet Tool')
     subparsers = parser.add_subparsers(dest='command')
 
     download_parser = subparsers.add_parser('download')
-    download_parser.add_argument('--path', type=str, default=os.path.expanduser('~/.virusnet'))
+    download_parser.add_argument('--path', type=str, default=os.path.expanduser('~/.bacterianet'))
 
     predict_parser = subparsers.add_parser('predict')
     predict_parser.add_argument('--input', type=str, required=True)
     predict_parser.add_argument('--output', type=str, required=True)
-    predict_parser.add_argument('--path', type=str, default=os.path.expanduser('~/.virusnet'))
+    predict_parser.add_argument('--path', type=str, default=os.path.expanduser('~/.bacterianet'))
     predict_parser.add_argument('--step_size', type=int, default=1000, help='Step size for prediction')
     predict_parser.add_argument('--batch_size', type=int, default=100, help='Batch size for prediction')
     predict_parser.add_argument('--mode', type=str, choices=['binary', 'genus'], default='binary', help='Prediction mode')

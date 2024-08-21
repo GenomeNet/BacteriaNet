@@ -1,9 +1,9 @@
 package:
-  name: virusnet
-  version: 0.9.5
+  name: bacterianet
+  version: 0.0.1
 
 source:
-  path: virusnet/
+  path: bacterianet/
 
 build:
   noarch: python
@@ -57,15 +57,15 @@ requirements:
 
 test:
   commands:
-    - virusnet --help
+    - bacterianet --help
     - R --vanilla -e "library(keras)"
     - R --vanilla -e "library(deepG)"
 
 
 about:
-  home: https://github.com/genomenet/virusnet
+  home: https://github.com/genomenet/BacteriaNet
   license: MIT
-  summary: A package for classifying virus using deep learning models.
+  summary: A package for predicting bacterial phenotypes using deep learning models.
   description: |
-    VirusNet is a package that uses machine learning models to classify virus genus based on genomic sequences. 
+    BacteriaNet is a package that uses machine learning models to classify virus genus based on genomic sequences. 
     The model has been trained on high quality genomes from the International Committee on Taxonomy of Viruses (ICTV).

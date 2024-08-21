@@ -1,2 +1,0 @@
-contig_name,mean_is_virus,median_is_virus,iqr_is_virus,sd_is_virus,number_of_entries,is_virus_binary
-NC_045512.2 Severe acute respiratory syndrome coronavirus 2 isolate Wuhan-Hu-1, complete genome,0.921103448275862,0.996,0.08,0.156464132089568,29,TRUE

@@ -1,5 +1,7 @@
 # BacteriaNet
 
+BacteriaNet is a tool that allows to generate phenotypic prediction of a bacteria genome based on nucleotide data.
+
 [![Build and Test Conda Package](https://github.com/GenomeNet/BacteriaNet/actions/workflows/python-package-conda.yml/badge.svg)](https://github.com/GenomeNet/BacteriaNet/actions/workflows/python-package-conda.yml) [![Anaconda-Server Badge](https://anaconda.org/genomenet/BacteriaNet/badges/version.svg)](https://anaconda.org/genomenet/BacteriaNet) [![Anaconda-Server Badge](https://anaconda.org/genomenet/BacteriaNet/badges/latest_release_relative_date.svg)](https://anaconda.org/genomenet/BacteriaNet) [![Anaconda-Server Badge](https://anaconda.org/genomenet/BacteriaNet/badges/downloads.svg)](https://anaconda.org/genomenet/BacteriaNet)
 
 ## Install
