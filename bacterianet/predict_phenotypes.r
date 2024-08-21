@@ -28,9 +28,9 @@ invisible(source(file.path(conda_prefix, "bin", "setup_logger.r")))
 safe_write_fasta <- function(fasta_subset, file_path) {
   if (!is.null(fasta_subset) && nrow(fasta_subset) > 0) {
     writeFasta(fasta_subset, file_path)
-    custom_log("INFO", paste("FASTA data written to:", file_path), "3/8")
+    custom_log("INFO", paste("FASTA data written to:", file_path), "3/4")
   } else {
-    custom_log("WARN", "No contigs found", "3/8")
+    custom_log("WARN", "No contigs found", "3/4")
   }
 }
 
@@ -46,7 +46,6 @@ output_directory <- command_args$output
 if (!dir.exists(output_directory)) {
   dir.create(output_directory, recursive = TRUE)
 }
-
 
 # generator args
 maxlen_fragment <- 10000
@@ -64,7 +63,6 @@ seed <- 33
 
 pred_list <- vector('list', 1)
 
-
 to_time_dist <- function(x, samples_per_target) {
   x_dim <- dim(x)
   x_dim_td <- c(x_dim[1], samples_per_target, x_dim[2]/samples_per_target, x_dim[3])
@@ -72,7 +70,7 @@ to_time_dist <- function(x, samples_per_target) {
   keras::k_eval(x_td)
 }
 
-custom_log("INFO", "Checking input file", "1/8")
+custom_log("INFO", "Checking input file", "1/4")
 
 fasta_df <- readFasta(command_args$input)
 nt_seq <- paste(fasta_df$Sequence, collapse = "")
@@ -85,27 +83,24 @@ nt_seq <- paste(fasta_df$Sequence, collapse = "")
   }
 
 
-
 num_fasta_entries <- nrow(fasta_df)
 
-custom_log("INFO", paste("Number of FASTA entries in the file:", num_fasta_entries), "1/8")
+#custom_log("INFO", paste("Number of FASTA entries in the file:", num_fasta_entries), "1/8")
 
 if (num_fasta_entries == 0) {
   custom_log("ERROR", "Input FASTA file is empty. Please provide a non-empty FASTA file.", "1/8")
   stop("Empty input file.")
 }
 
-custom_log("INFO", "Loading binary model", "2/8")
+custom_log("INFO", "Loading model", "2/4")
 
 suppressWarnings({
   model_phenotypes <- keras::load_model_hdf5(command_args$model_phenotypes, custom_objects = custom_objects)
 })
 
-print(model_phenotypes)
 
-custom_log("INFO", "Performing predictions", "3/8")
+custom_log("INFO", "Performing predictions", "3/4")
 temp_file_binary <- tempfile(fileext = ".h5")
-
 
 
 start_ind <- seq(1, nchar(nt_seq) - total_seq_len + 1, by = step)
@@ -116,7 +111,7 @@ x <- seq_encoding_label(maxlen = total_seq_len,
                         char_sequence = nt_seq)
 
 x <- to_time_dist(x, samples_per_target = samples_per_target)
-y_pred <- model_phenotypes$predict(x)
+y_pred <- model_phenotypes$predict(x, verbose = 0)
 
 # Process predictions for a single file
 target_split <- list(
@@ -228,7 +223,6 @@ get_pred <- function(l, target_split) {
 }
 
 
-
 # Aggregate predictions
 l_sub <- lapply(y_pred, column_means)
 names(l_sub) <- target_names
@@ -237,4 +231,24 @@ predictions <- get_pred(l = l_sub, target_split)
 # Convert predictions to data frame and save
 df <- as.data.frame(t(predictions))
 
-print(df)
+# Convert predictions to data frame and save
+df <- as.data.frame(t(predictions))
+df$file <- basename(command_args$input)
+
+write.csv(predictions, paste0(output_directory, '/phenotype_pred.csv'), row.names = T, quote =F)
+
+custom_log("INFO", "Saving predictions", "4/4")
+
+
+# Print formatted predictions
+print_formatted_predictions <- function(df) {
+  for (col in names(df)) {
+    if (is.numeric(df[[col]])) {
+      cat(sprintf("%s: %.3f\n", col, round(df[[col]], 3)))
+    } else {
+      cat(sprintf("%s: %s\n", col, df[[col]]))
+    }
+  }
+}
+
+print_formatted_predictions(df)
