@@ -69,27 +69,17 @@ def check_files(download_path):
             return False
     return True
 
-def run_prediction(input, output, model_paths, step_size=1000, batch_size=100, mode='binary', metagenome=False):
+def run_prediction(input, output, model_paths, step_size=1000, batch_size=100):
     """
-    Function to run the R script for virus prediction using the specified arguments.
+    Function to run the R script for bacteria prediction using the specified arguments.
     """
-    if mode == 'binary':
-        if metagenome:
-            r_script_path = os.path.join(os.path.dirname(__file__), "predict_binary_metagenome.r")
-        else:
-            r_script_path = os.path.join(os.path.dirname(__file__), "predict_binary.r")
-    elif mode == 'genus':
-        r_script_path = os.path.join(os.path.dirname(__file__), "predict_genus.r")
-    else:
-        raise ValueError(f"Invalid mode: {mode}")
+    r_script_path = os.path.join(os.path.dirname(__file__), "predict_binary.r")
 
     command = [
         "Rscript", r_script_path,
         '--input', input,
         '--output', output,
-        '--model_binary', model_paths['binary_model'], 
-        '--model_genus', model_paths['genus_model'], 
-        '--labels_genus', model_paths['genus_labels'],
+        '--model_phenotypes', model_paths['phenotype_model'], 
         '--step_size', str(step_size),
         '--batch_size', str(batch_size)
     ]
@@ -109,8 +99,7 @@ if __name__ == "__main__":
     predict_parser.add_argument('--path', type=str, default=os.path.expanduser('~/.bacterianet'))
     predict_parser.add_argument('--step_size', type=int, default=1000, help='Step size for prediction')
     predict_parser.add_argument('--batch_size', type=int, default=100, help='Batch size for prediction')
-    predict_parser.add_argument('--mode', type=str, choices=['binary', 'genus'], default='binary', help='Prediction mode')
-    predict_parser.add_argument('--metagenome', action='store_true', help='Enable metagenome mode (only applicable for binary mode)')
+    predict_parser.add_argument('--mode', type=str, choices=['binary'], default='binary', help='Prediction mode')
     
     args = parser.parse_args()
 
@@ -119,6 +108,6 @@ if __name__ == "__main__":
     elif args.command == 'predict':
         if check_files(args.path):
             model_paths = {key: os.path.join(args.path, os.path.basename(info['url'])) for key, info in json.load(open(os.path.join(sys.prefix, 'bin', 'models.json'))).items()}
-            run_prediction(args.input, args.output, model_paths, args.step_size, args.batch_size, args.mode, args.metagenome)
+            run_prediction(args.input, args.output, model_paths, args.step_size, args.batch_size)
         else:
             print("Model files are missing or corrupted. Please download them again.")
