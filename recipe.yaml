@@ -67,5 +67,5 @@ about:
   license: MIT
   summary: A package for predicting bacterial phenotypes using deep learning models.
   description: |
-    BacteriaNet is a package that uses machine learning models to classify virus genus based on genomic sequences. 
-    The model has been trained on high quality genomes from the International Committee on Taxonomy of Viruses (ICTV).
+    BacteriaNet is a package that uses machine learning models to predict bacterial phenotypes based on the genomic sequences. 
+    The model has been trained on high quality phenotypes from the BacDive DSMZ collection.
