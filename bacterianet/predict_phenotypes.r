@@ -168,14 +168,7 @@ get_pred <- function(l, target_split) {
   
   label <- 'biosafety'
   m <- l[[label]]
-  if (m < 1.15) {
-    pred <- 1
-  } else if (m > 2.1) {
-    pred <- 3
-  } else {
-    pred <- 2
-  }
-  res_list[[label]] <- pred
+  res_list[[label]] <- m
   
   label <- 'pathogenicity_human'
   m <- l[[label]]
