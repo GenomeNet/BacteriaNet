@@ -76,15 +76,15 @@ BacteriaNet predict --input test/ecoli.fasta --output example_results
 This output will be written to the screen
 
 ```
-rgStart_len: -0.0233813473411525
-rgEnd_len: -0.0892123775556684
-rgStart_wid: 0.331785323719184
-rgEnd_wid: 0.114853305121263
+rgStart_len: 2.13097876991219
+rgEnd_len: 2.71646469698037
+rgStart_wid: 0.730844216419263
+rgEnd_wid: 0.801768186600749
 cellshape: rod.shaped
 flagellum: monotrichous_polar
 gram: negative
 is_motile: TRUE
-biosafety: 3
+biosafety: 2.12446224689484
 pathogenicity_human: FALSE
 pathogenicity_animal: FALSE
 pathogenicity_plant: FALSE

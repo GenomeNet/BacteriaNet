@@ -1,0 +1,2 @@
+,rgStart_len,rgEnd_len,rgStart_wid,rgEnd_wid,cellshape,flagellum,gram,is_motile,biosafety,pathogenicity_human,pathogenicity_animal,pathogenicity_plant,oxygen_growth,oxygen_facultative,oxygen_obligate,microaerophile,ability_spore
+1,2.13097876991219,2.71646469698037,0.730844216419263,0.801768186600749,rod.shaped,monotrichous_polar,negative,TRUE,2.12446224689484,FALSE,FALSE,FALSE,aerobe,facultative.aerobe,obligate.aerobe,FALSE,FALSE

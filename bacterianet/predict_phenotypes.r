@@ -141,7 +141,25 @@ get_pred <- function(l, target_split) {
   res_list <- list()
   
   label <- 'cellsize'
-  res_list[[label]] <- l[[label]]
+  cellsize_means <- c(rgStart_len = 2.2600340, rgEnd_len = 3.4795150, rgStart_wid = 0.6204455, rgEnd_wid = 0.7575469)
+  cellsize_sds <- c(rgStart_len = 5.5195700, rgEnd_len = 8.5531860, rgStart_wid = 0.3327414, rgEnd_wid = 0.3850240)
+  
+  # Debugging information
+  #print("Structure of l:")
+  #print(str(l))
+  
+  #print("Structure of l[[label]]:")
+  #print(str(l[[label]]))
+  
+  res_list[[label]] <- list()
+  cellsize_names <- names(cellsize_means)
+  for (i in seq_along(cellsize_names)) {
+    name <- cellsize_names[i]
+    #print(paste("Processing:", name))
+    #print(paste("Value in l[[label]]:", l[[label]][i]))
+    res_list[[label]][[name]] <- (l[[label]][i] * cellsize_sds[[name]]) + cellsize_means[[name]]
+    #print(paste("Transformed value:", res_list[[label]][[name]]))
+  }
   
   label <- 'cellshape'
   m <- l[[label]]
